@@ -1,0 +1,608 @@
+.about-section {
+  padding: 4rem 2rem;
+  background: var(--bg-light);
+  position: relative;
+}
+
+/* New wrapper for subsections */
+.about-subsections {
+  width: 100%;
+  max-width: 1200px;
+  margin: 2rem auto 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+.about-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+/* Image Section */
+.about-image-wrapper {
+  position: relative;
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: all 0.8s ease;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-image-wrapper.animate-in {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.about-image-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--gradient-blue);
+  border-radius: 20px;
+  z-index: 0;
+}
+
+.about-image {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  object-fit: contain;
+  border-radius: 20px;
+  box-shadow: var(--shadow-xl);
+  z-index: 1;
+  display: block;
+}
+
+.experience-badge {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: var(--primary-navy);
+  color: var(--text-primary);
+  padding: 1.5rem;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: var(--shadow-lg);
+  z-index: 2;
+  border: 2px solid rgba(59, 130, 246, 0.3);
+}
+
+.exp-number {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--accent-blue);
+}
+
+.exp-text {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Content Section */
+.about-content {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: all 0.8s ease 0.2s;
+}
+
+.about-content.animate-in {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.section-label {
+  display: inline-block;
+  background: rgba(59, 130, 246, 0.1);
+  color: var(--accent-blue);
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+}
+
+.about-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary-navy);
+  line-height: 1.3;
+  margin-bottom: 1rem;
+}
+
+.highlight {
+  color: var(--accent-blue);
+}
+
+.about-description {
+  font-size: 1rem;
+  color: #64748b;
+  line-height: 1.8;
+  margin-bottom: 0.75rem;
+}
+
+/* Tech Stack Banner */
+.tech-stack-banner {
+  background: linear-gradient(135deg, var(--primary-navy) 0%, var(--secondary-navy) 100%);
+  border-radius: 16px;
+  padding: 1.25rem 1.5rem;
+  margin: 0;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.stack-title {
+  color: var(--primary-navy);
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 2rem 0 0.75rem 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.stack-icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.stack-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(59, 130, 246, 0.1);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: var(--transition-fast);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.stack-item:hover {
+  background: rgba(59, 130, 246, 0.2);
+  transform: translateY(-2px);
+}
+
+.stack-icon {
+  font-size: 1.25rem;
+}
+
+.stack-name {
+  color: var(--text-primary);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* Skills Section */
+.skills-section {
+  margin-top: 0;
+}
+
+.skills-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--primary-navy);
+  margin-bottom: 1rem;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.skill-item {
+  background: white;
+  padding: 0.9rem 1rem;
+  border-radius: 12px;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-fast);
+  border: 1px solid var(--border-color);
+}
+
+.skill-item:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+  border-color: var(--accent-blue);
+}
+
+.skill-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.skill-name {
+  font-weight: 600;
+  color: var(--primary-navy);
+  font-size: 0.9rem;
+}
+
+.skill-percent {
+  color: var(--accent-blue);
+  font-weight: 700;
+  font-size: 0.875rem;
+}
+
+.skill-bar {
+  height: 8px;
+  background: #e2e8f0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.skill-progress {
+  height: 100%;
+  background: var(--gradient-blue);
+  border-radius: 4px;
+  width: 0;
+  animation: progressFill 1.5s ease forwards;
+}
+
+@keyframes progressFill {
+  to {
+    width: var(--progress-width);
+  }
+}
+
+/* Education Section */
+.education-section {
+  margin-top: 0;
+}
+
+.edu-section-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--primary-navy);
+  margin-bottom: 1rem;
+}
+
+.education-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+  background: white;
+  padding: 1rem;
+  border-radius: 16px;
+  box-shadow: var(--shadow-md);
+  margin-bottom: 1rem;
+  border-left: 4px solid var(--accent-blue);
+}
+
+.education-card.main-edu {
+  background: linear-gradient(135deg, var(--primary-navy) 0%, var(--secondary-navy) 100%);
+  border-left: none;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  padding: 1.25rem;
+}
+
+.main-edu .edu-icon {
+  background: rgba(59, 130, 246, 0.2);
+}
+
+.main-edu .edu-icon svg {
+  color: var(--accent-blue);
+}
+
+.main-edu .edu-content h4 {
+  color: var(--text-primary);
+}
+
+.main-edu .edu-content p {
+  color: var(--text-secondary);
+}
+
+.main-edu .edu-year {
+  color: var(--accent-blue);
+}
+
+.edu-icon {
+  width: 48px;
+  height: 48px;
+  background: rgba(59, 130, 246, 0.1);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.edu-icon svg {
+  color: var(--accent-blue);
+}
+
+.edu-content h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary-navy);
+  margin-bottom: 0.2rem;
+}
+
+.edu-content p {
+  font-size: 0.9rem;
+  color: #64748b;
+  margin-bottom: 0.25rem;
+}
+
+.edu-year {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent-blue);
+}
+
+/* Certifications Grid */
+.certifications-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
+.cert-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  background: white;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-fast);
+  border: 1px solid var(--border-color);
+}
+
+.cert-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+  border-color: var(--accent-blue);
+}
+
+.cert-badge {
+  width: 40px;
+  height: 40px;
+  background: var(--gradient-blue);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.cert-badge svg {
+  color: var(--primary-navy);
+}
+
+.cert-info h5 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--primary-navy);
+  margin-bottom: 0.25rem;
+  line-height: 1.3;
+}
+
+.cert-info p {
+  font-size: 0.8rem;
+  color: #64748b;
+  margin-bottom: 0.25rem;
+}
+
+.cert-year {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--accent-blue);
+  background: rgba(59, 130, 246, 0.1);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+}
+
+/* TABLET RESPONSIVE */
+@media (max-width: 1024px) {
+  .about-container {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  
+  .about-image-wrapper {
+    max-width: 350px;
+    margin: 0 auto;
+  }
+  
+  .about-image {
+    height: auto;
+    width: 100%;
+  }
+  
+  .certifications-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .about-subsections {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+}
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 768px) {
+  .about-section {
+    padding: 4rem 1.5rem;
+  }
+  
+  .about-title {
+    font-size: 1.75rem;
+  }
+  
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .about-image {
+    height: auto;
+    width: 100%;
+  }
+  
+  .about-image-wrapper {
+    max-width: 100%;
+    overflow: visible;
+  }
+  
+  .about-image-bg {
+    top: 15px;
+    left: 15px;
+    right: -15px;
+    bottom: -15px;
+  }
+  
+  .experience-badge {
+    bottom: -15px;
+    right: -10px;
+    padding: 1rem;
+  }
+  
+  .exp-number {
+    font-size: 1.75rem;
+  }
+  
+  .exp-text {
+    font-size: 0.65rem;
+  }
+  
+  .tech-stack-banner {
+    padding: 1.25rem;
+  }
+  
+  .stack-icons {
+    justify-content: center;
+  }
+  
+  .stack-item {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.8rem;
+  }
+  
+  .education-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 1.25rem;
+  }
+  
+  .edu-icon {
+    width: 48px;
+    height: 48px;
+  }
+  
+  .about-subsections {
+    grid-template-columns: 1fr;
+    margin: 2rem auto 0;
+  }
+}
+
+/* SMALL MOBILE */
+@media (max-width: 480px) {
+  .about-section {
+    padding: 3rem 1rem;
+  }
+  
+  .section-label {
+    font-size: 0.75rem;
+    padding-left: 2.5rem;
+  }
+  
+  .section-label::before {
+    width: 1.5rem;
+  }
+  
+  .about-title {
+    font-size: 1.5rem;
+  }
+  
+  .about-description {
+    font-size: 0.9rem;
+  }
+  
+  .about-image-wrapper {
+    max-width: 100%;
+    overflow: visible;
+  }
+  
+  .about-image {
+    height: auto;
+    width: 100%;
+  }
+  
+  .experience-badge {
+    padding: 0.75rem;
+    bottom: -10px;
+    right: -5px;
+  }
+  
+  .exp-number {
+    font-size: 1.5rem;
+  }
+  
+  .tech-stack-banner {
+    padding: 1rem;
+  }
+  
+  .stack-title {
+    font-size: 0.85rem;
+    text-align: center;
+  }
+  
+  .stack-icons {
+    gap: 0.5rem;
+  }
+  
+  .stack-item {
+    padding: 0.35rem 0.6rem;
+  }
+  
+  .stack-name {
+    font-size: 0.75rem;
+  }
+  
+  .skills-title,
+  .edu-section-title {
+    font-size: 1.1rem;
+  }
+  
+  .skill-item {
+    padding: 0.875rem 1rem;
+  }
+  
+  .skill-name {
+    font-size: 0.85rem;
+  }
+  
+  .cert-card {
+    padding: 1rem;
+    gap: 0.75rem;
+  }
+  
+  .cert-badge {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .cert-info h5 {
+    font-size: 0.85rem;
+  }
+  
+  .cert-info p {
+    font-size: 0.75rem;
+  }
+}
