@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './theme.css';
 import './Testimonials.css';
 
 const testimonials = [
@@ -22,78 +23,48 @@ const testimonials = [
   }
 ];
 
+const pad = (n) => String(n).padStart(2, '0');
+
 const Testimonials = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const total = testimonials.length;
+  const t = testimonials[activeIndex];
 
-  const nextTestimonial = () => {
-    setActiveIndex((prev) => (prev + 1) % testimonials.length);
-  };
-
-  const prevTestimonial = () => {
-    setActiveIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-  };
+  const next = () => setActiveIndex((p) => (p + 1) % total);
+  const prev = () => setActiveIndex((p) => (p - 1 + total) % total);
 
   return (
     <section className='testimonials-section' id='testimonials1'>
       <div className='testimonials-container'>
-        <span className='section-label'>Testimonials</span>
-        <h2 className='testimonials-title'>What Clients Say</h2>
-        <p className='testimonials-subtitle'>
-          Feedback from businesses I've had the pleasure of working with
-        </p>
+        <div className='eyebrow'>(04) Kind words</div>
 
-        <div className='testimonials-wrapper'>
-          <button className='testimonial-nav prev' onClick={prevTestimonial} aria-label="Previous testimonial">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <polyline points="15 18 9 12 15 6"></polyline>
-            </svg>
-          </button>
+        <div className='t-grid'>
+          <h2 className='t-title'>
+            What clients <em>say</em> after the launch.
+          </h2>
 
-          <div className='testimonial-card'>
-            <div className='quote-icon'>
-              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21z"></path>
-                <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"></path>
-              </svg>
-            </div>
-            
-            <div className='rating'>
-              {[...Array(testimonials[activeIndex].rating)].map((_, i) => (
-                <svg key={i} xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                </svg>
-              ))}
-            </div>
+          <div className='t-stage' key={activeIndex}>
+            <span className='t-mark' aria-hidden='true'>&ldquo;</span>
+            <blockquote className='t-quote'>{t.content}</blockquote>
 
-            <p className='testimonial-content'>{testimonials[activeIndex].content}</p>
-            
-            <div className='testimonial-author'>
-              <div className='author-avatar'>
-                {testimonials[activeIndex].name.charAt(0)}
+            <div className='t-author'>
+              <div>
+                <strong>{t.name}</strong>
+                <span>{t.role}</span>
               </div>
-              <div className='author-info'>
-                <h4>{testimonials[activeIndex].name}</h4>
-                <p>{testimonials[activeIndex].role}</p>
-              </div>
+              <span className='t-rating'>{t.rating}/5</span>
             </div>
           </div>
-
-          <button className='testimonial-nav next' onClick={nextTestimonial} aria-label="Next testimonial">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <polyline points="9 18 15 12 9 6"></polyline>
-            </svg>
-          </button>
         </div>
 
-        <div className='testimonial-dots'>
-          {testimonials.map((_, index) => (
-            <button
-              key={index}
-              className={`dot ${index === activeIndex ? 'active' : ''}`}
-              onClick={() => setActiveIndex(index)}
-              aria-label={`Go to testimonial ${index + 1}`}
-            />
-          ))}
+        <div className='t-controls'>
+          <span className='t-count'>
+            {pad(activeIndex + 1)} <i>/</i> {pad(total)}
+          </span>
+          <div className='t-buttons'>
+            <button onClick={prev} aria-label='Previous testimonial'>&larr;</button>
+            <button onClick={next} aria-label='Next testimonial'>&rarr;</button>
+          </div>
         </div>
       </div>
     </section>

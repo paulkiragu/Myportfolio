@@ -1,26 +1,15 @@
 import React, { useEffect, useRef } from 'react';
+import './theme.css';
 import './About.css';
 import image from '../assets/paul2.webp';
 
-const skills = [
-  { name: 'React.js', level: 90, category: 'frontend' },
-  { name: 'Node.js', level: 85, category: 'backend' },
-  { name: 'MongoDB', level: 80, category: 'backend' },
-  { name: 'Express.js', level: 85, category: 'backend' },
-  { name: 'Python', level: 75, category: 'backend' },
-  { name: 'Machine Learning', level: 70, category: 'ai' },
-  { name: 'API Integration', level: 90, category: 'backend' },
-  { name: 'UI/UX Design', level: 85, category: 'design' },
+const skillGroups = [
+  { label: 'Frontend', items: ['React.js', 'UI/UX Design'] },
+  { label: 'Backend', items: ['Node.js', 'Express.js', 'MongoDB', 'Python', 'API Integration'] },
+  { label: 'AI / ML', items: ['Machine Learning'] },
 ];
 
-const techStack = [
-  { name: 'MongoDB', icon: '🍃' },
-  { name: 'Express', icon: '⚡' },
-  { name: 'React', icon: '⚛️' },
-  { name: 'Node.js', icon: '🟢' },
-  { name: 'Python', icon: '🐍' },
-  { name: 'M-Pesa API', icon: '💳' },
-];
+const techStack = ['MongoDB', 'Express', 'React', 'Node.js', 'Python', 'M-Pesa API'];
 
 const certifications = [
   { title: 'Full Stack Software Engineering', provider: 'PLP Academy', year: '2025' },
@@ -32,128 +21,109 @@ const certifications = [
 ];
 
 const About = () => {
-  const aboutRef = useRef();
-  const imageRef = useRef();
+  const rootRef = useRef(null);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const aboutTop = aboutRef.current?.getBoundingClientRect().top;
-      const imageTop = imageRef.current?.getBoundingClientRect().top;
-      const windowHeight = window.innerHeight;
-
-      if (aboutTop < windowHeight * 0.8) {
-        aboutRef.current?.classList.add('animate-in');
-      }
-      if (imageTop < windowHeight * 0.8) {
-        imageRef.current?.classList.add('animate-in');
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
+    const els = rootRef.current?.querySelectorAll('.reveal') || [];
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add('in');
+            io.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.12 }
+    );
+    els.forEach((el) => io.observe(el));
+    return () => io.disconnect();
   }, []);
 
+  const marquee = [...techStack, ...techStack, ...techStack, ...techStack];
+
   return (
-    <section className='about-section' id='about1'>
-      <div className='about-container'>
-        <div className='about-image-wrapper' ref={imageRef}>
-          <div className='about-image-bg'></div>
-          <img src={image} alt="Paul" className='about-image' />
-          <div className='experience-badge'>
-            <span className='exp-number'>3+</span>
-            <span className='exp-text'>Years of Experience</span>
+    <section className='about' id='about1' ref={rootRef}>
+      <div className='about-inner'>
+        <div className='eyebrow reveal'>(01) About</div>
+
+        <div className='about-hero'>
+          <figure className='about-figure reveal'>
+            <div className='about-frame'>
+              <img src={image} alt='Portrait of Paul' />
+            </div>
+            <figcaption className='about-sticker'>
+              <strong>3+</strong>
+              <span>years building</span>
+            </figcaption>
+          </figure>
+
+          <div className='about-copy reveal'>
+            <h2 className='about-title'>
+              Full stack developer, <em>curious about AI.</em>
+            </h2>
+            <p>
+              I build web applications with React, Node.js, Python and machine
+              learning, aiming for things that are fast, maintainable and
+              actually useful to the people using them.
+            </p>
+            <p>
+              From e-commerce platforms with M-Pesa payments to AI-powered
+              recommendation systems, I take a project from the first sketch to
+              a deployed product.
+            </p>
           </div>
-        </div>
-        
-        <div className='about-content' ref={aboutRef}>
-          <span className='section-label'>About Me</span>
-          <h2 className='about-title'>
-            Full Stack Developer & 
-            <span className='highlight'> AI Enthusiast</span>
-          </h2>
-          <p className='about-description'>
-            I'm a passionate full-stack developer with expertise in modern web 
-            technologies including React, Node.js, Python, and Machine Learning. 
-            I build scalable, high-performance web applications that solve 
-            real-world problems.
-          </p>
-          <p className='about-description'>
-            From e-commerce platforms with M-Pesa integration to AI-powered 
-            recommendation systems, I deliver end-to-end solutions that drive 
-            business growth and exceptional user experiences.
-          </p>
         </div>
       </div>
 
-      {/* Skills and Education Row - Side by Side */}
-      <div className='about-subsections'>
-        <div>
-          <div className='skills-section'>
-            <h3 className='skills-title'>Technical Expertise</h3>
-            <div className='skills-grid'>
-            {skills.map((skill, index) => (
-              <div key={index} className='skill-item'>
-                <div className='skill-header'>
-                  <span className='skill-name'>{skill.name}</span>
-                  <span className='skill-percent'>{skill.level}%</span>
-                </div>
-                <div className='skill-bar'>
-                  <div 
-                    className='skill-progress' 
-                    style={{ '--progress-width': `${skill.level}%` }}
-                  ></div>
-                </div>
+      <div className='marquee' aria-label='Tech stack'>
+        <div className='marquee-track'>
+          {marquee.map((t, i) => (
+            <span key={i}>
+              {t}
+              <i aria-hidden='true'>/</i>
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <div className='about-inner about-details'>
+        <div className='reveal'>
+          <h3 className='block-title'>Toolkit</h3>
+          <div className='skill-groups'>
+            {skillGroups.map((g) => (
+              <div className='skill-group' key={g.label}>
+                <span className='skill-label'>{g.label}</span>
+                <ul>
+                  {g.items.map((s) => (
+                    <li key={s}>{s}</li>
+                  ))}
+                </ul>
               </div>
             ))}
-            </div>
-          </div>
-          
-          {/* Tech Stack - Below Technical Expertise */}
-          <h3 className='stack-title'>Tech Stack</h3>
-          <div className='tech-stack-banner'>
-            <div className='stack-icons'>
-              {techStack.map((tech, index) => (
-                <div key={index} className='stack-item'>
-                  <span className='stack-icon'>{tech.icon}</span>
-                  <span className='stack-name'>{tech.name}</span>
-                </div>
-              ))}
-            </div>
           </div>
         </div>
-        <div className='education-section'>
-          <h3 className='edu-section-title'>Education & Certifications</h3>
-          <div className='education-card main-edu'>
-            <div className='edu-icon'>
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
-                <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
-              </svg>
-            </div>
-            <div className='edu-content'>
+
+        <div className='reveal'>
+          <h3 className='block-title'>Education</h3>
+          <div className='edu-row'>
+            <span className='row-year'>2022 &ndash; 2026</span>
+            <div>
               <h4>BSc. Computer Science</h4>
               <p>University of Embu</p>
-              <span className='edu-year'>2022 - 2026</span>
             </div>
           </div>
-          <div className='certifications-grid'>
-            {certifications.map((cert, index) => (
-              <div key={index} className='cert-card'>
-                <div className='cert-badge'>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <circle cx="12" cy="8" r="6"></circle>
-                    <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"></path>
-                  </svg>
-                </div>
-                <div className='cert-info'>
-                  <h5>{cert.title}</h5>
-                  <p>{cert.provider}</p>
-                  <span className='cert-year'>{cert.year}</span>
-                </div>
-              </div>
+
+          <h3 className='block-title block-title--spaced'>Certifications</h3>
+          <ul className='cert-list'>
+            {certifications.map((c) => (
+              <li key={c.title}>
+                <span className='row-year'>{c.year}</span>
+                <span className='cert-title'>{c.title}</span>
+                <span className='cert-provider'>{c.provider}</span>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </div>
     </section>

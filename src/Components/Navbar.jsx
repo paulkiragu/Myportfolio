@@ -1,50 +1,62 @@
 import React, { useState, useEffect } from 'react';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
+import './theme.css';
 import './Navbar.css';
+
+const links = [
+  { href: '#about1', label: 'About' },
+  { href: '#projects1', label: 'Projects' },
+  { href: '#services1', label: 'Services' },
+];
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [isOpen]);
 
-  const closeMenu = () => {
-    setIsOpen(false);
-  };
+  const close = () => setIsOpen(false);
 
   return (
-    <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
+    <nav className={`navbar ${scrolled ? 'scrolled' : ''} ${isOpen ? 'menu-open' : ''}`}>
       <div className='navbar-container'>
-        <a href="#" className='logo-text'>
-          <span className='logo-highlight'>P</span>aul<span className='logo-dot'>.</span>
+        <a href='#home' className='logo-text' aria-label='Paul, home'>
+          Paul<span className='logo-dot'>.</span>
         </a>
-        <div className='hamburger' onClick={toggleMenu}>
-          <span className={`line ${isOpen ? 'active' : ''}`}></span>
-          <span className={`line ${isOpen ? 'active' : ''}`}></span>
-          <span className={`line ${isOpen ? 'active' : ''}`}></span>
-        </div>
+
+        <button
+          className={`hamburger ${isOpen ? 'active' : ''}`}
+          onClick={() => setIsOpen(!isOpen)}
+          aria-label='Toggle menu'
+          aria-expanded={isOpen}
+        >
+          <span className='line'></span>
+          <span className='line'></span>
+        </button>
+
         <ul className={`nav-links ${isOpen ? 'active' : ''}`}>
-          <li onClick={closeMenu}>
-            <AnchorLink href="#about1">About</AnchorLink>
-          </li>
-          <li onClick={closeMenu}>
-            <AnchorLink href="#services1">Services</AnchorLink>
-          </li>
-          <li onClick={closeMenu}>
-            <AnchorLink href="#projects1">Projects</AnchorLink>
-          </li>
-          <li onClick={closeMenu}>
-            <AnchorLink href="#contact1" className='nav-cta'>Contact Me</AnchorLink>
+          {links.map((l, i) => (
+            <li key={l.href} onClick={close}>
+              <AnchorLink href={l.href}>
+                <span className='nav-num'>0{i + 1}</span>
+                {l.label}
+              </AnchorLink>
+            </li>
+          ))}
+          <li onClick={close}>
+            <AnchorLink href='#contact1' className='nav-cta'>
+              Contact me <span aria-hidden='true'>&rarr;</span>
+            </AnchorLink>
           </li>
         </ul>
       </div>
