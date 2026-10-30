@@ -48,7 +48,6 @@ const Navbar = () => {
           {links.map((l, i) => (
             <li key={l.href} onClick={close}>
               <AnchorLink href={l.href}>
-                <span className='nav-num'>0{i + 1}</span>
                 {l.label}
               </AnchorLink>
             </li>

@@ -1,13 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
 
+/* Blue & green palette.
+   Blue is the main colour (headlines, buttons, photo). Green is a small,
+   deliberate secondary touch (dots, numbers, bullets, the contact section). */
 :root {
-  --paper: #f2efe8;
-  --paper-2: #e8e4d9;
-  --ink: #14120f;
-  --ink-2: #55504a;
-  --line: rgba(20, 18, 15, 0.16);
-  --accent: #ff4d1c;
-  --accent-deep: #c23a12; /* accent for small text: passes contrast on paper */
+  --paper: #f4f7fb;
+  --paper-2: #e7eef8;
+  --ink: #0b1b33;
+  --ink-2: #4a5a73;
+  --line: rgba(11, 27, 51, 0.14);
+
+  --accent: #2456f0;       /* blue */
+  --accent-deep: #2456f0;  /* blue for small text (5.3:1 on paper) */
+  --green: #19b97f;        /* decorative green */
+  --green-deep: #087552;   /* green for small text (4.5:1+ on paper) */
+  --on-accent: #ffffff;
+
   --font-display: 'Instrument Serif', Georgia, serif;
   --font-body: 'DM Sans', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
@@ -23,9 +31,8 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-::selection { background: var(--accent); color: var(--ink); }
-
-:focus-visible { outline: 2px solid var(--accent-deep); outline-offset: 3px; }
+::selection { background: var(--accent); color: var(--on-accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
 .eyebrow {
   display: flex;
@@ -37,12 +44,7 @@ body {
   text-transform: uppercase;
   color: var(--ink-2);
 }
-.eyebrow::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: var(--line);
-}
+.eyebrow::after { content: ''; flex: 1; height: 1px; background: var(--line); }
 
 /* Shared scroll-reveal (toggled by useReveal.js) */
 .reveal {
@@ -53,4 +55,32 @@ body {
 .reveal.in { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* ------------------------------------------------------------------
+   Palette adjustments for components written with the old orange accent.
+   (Higher specificity via "body" so they win over each component's CSS.)
+   ------------------------------------------------------------------ */
+
+/* Navbar background follows the new paper colour */
+body .navbar { background: rgba(244, 247, 251, 0.96); }
+
+/* Text that sits on the blue accent must be white, not navy */
+body .btn-solid:hover,
+body .nav-links li a.nav-cta:hover,
+body .about-sticker { color: var(--on-accent); }
+
+/* Green touches */
+body .logo-dot,
+body .footer-logo .logo-dot { color: var(--green); }
+body .status-dot { background: var(--green); }
+body .project-num,
+body .service-num { color: var(--green-deep); }
+body .service-features li::before { color: var(--green-deep); }
+
+/* On dark navy surfaces, blue is too dim: use green / light blue instead */
+body .contact-section { --accent: #3ddc9a; --accent-deep: #3ddc9a; --on-accent: #0b1b33; }
+body .marquee { --accent: #8fb0ff; }
+@media (max-width: 900px) {
+  body .nav-links { --accent: #3ddc9a; --on-accent: #0b1b33; }
 }

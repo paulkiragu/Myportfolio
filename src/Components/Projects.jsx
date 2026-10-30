@@ -1,114 +1,45 @@
 import React from 'react';
-import useReveal from './useReveal';
-import './theme.css';
-import './Projects.css';
 
 const projects = [
-  {
-    title: 'Precision Farming',
-    category: 'AgriTech / AI',
-    description:
-      'AI-powered precision agriculture that recommends crops by location, using machine learning and real-time weather analytics.',
-    tech: ['React', 'Python', 'FastAPI'],
-    liveUrl: 'https://precision-farming-ihij.onrender.com',
-  },
-  {
-    title: 'Afya Bora AI',
-    category: 'AI / Healthcare',
-    description:
-      'Community health monitoring that alerts doctors to emerging health issues and predicts where attention is needed next.',
-    tech: ['IoT', 'Machine Learning', 'Python', 'Flask', 'React'],
-    liveUrl: 'https://afyaboraai.vercel.app/',
-  },
-  {
-    title: 'Smart Waste Management',
-    category: 'Computer Vision / IoT',
-    description:
-      'Computer vision on CCTV feeds spots accumulating waste, so collection and environmental monitoring can be far more efficient.',
-    tech: ['Computer Vision', 'Python', 'Flask', 'React'],
-    liveUrl: 'https://garbage-nu.vercel.app/',
-  },
-  {
-    title: 'OrbitShop',
-    category: 'E-Commerce',
-    description:
-      'A full e-commerce platform: product management, secure checkout, payment integration and order tracking.',
-    tech: ['MongoDB', 'Express', 'React', 'Node.js'],
-    liveUrl: 'https://orbitshop.co.ke',
-  },
-  {
-    title: 'ProWriter',
-    category: 'Writing Services',
-    description:
-      'A platform offering reliable, affordable and high-quality writing services to individuals and organisations.',
-    tech: ['HTML', 'JavaScript', 'Express', 'MySQL'],
-    liveUrl: 'https://prowriter.me',
-  },
-  {
-    title: 'Bylin',
-    category: 'Event Management',
-    description:
-      'Website for an events and management organisation, built for a client to run their events and day-to-day operations.',
-    tech: ['MongoDB', 'Express', 'React', 'Node.js'],
-    liveUrl: 'https://bylin.works/',
-  },
+  { title: 'Precision Farming', category: 'Agriculture and AI', url: 'https://precision-farming-ihij.onrender.com',
+    text: 'An AI-powered system that recommends crops for a location using machine learning and real-time weather data.',
+    tech: ['React', 'Python', 'FastAPI'] },
+  { title: 'Afya Bora AI', category: 'Healthcare and AI', url: 'https://afyaboraai.vercel.app/',
+    text: 'A community health monitoring system that alerts doctors and predicts emerging health issues.',
+    tech: ['IoT', 'Machine Learning', 'Python', 'Flask', 'React', 'Vite'] },
+  { title: 'Smart Waste Management System', category: 'Computer vision and IoT', url: 'https://garbage-nu.vercel.app/',
+    text: 'Uses CCTV cameras and computer vision to spot accumulating waste, supporting cleaner and better monitored areas.',
+    tech: ['Computer Vision', 'Python', 'Flask', 'React', 'Vite'] },
+  { title: 'OrbitShop', category: 'E-commerce', url: 'https://orbitshop.co.ke',
+    text: 'A full online store with product management, secure checkout, payments and order tracking.',
+    tech: ['MongoDB', 'Express', 'React', 'Node.js'] },
+  { title: 'ProWriter', category: 'Writing services', url: 'https://prowriter.me',
+    text: 'A platform offering reliable, affordable, high-quality writing services to individuals and organizations.',
+    tech: ['HTML', 'JavaScript', 'Express', 'MySQL'] },
+  { title: 'Bylin', category: 'Event management', url: 'https://bylin.works/',
+    text: 'A website for managing events and operations, built for a client.',
+    tech: ['MongoDB', 'Express', 'React', 'Node.js'] },
 ];
 
-const pad = (n) => String(n).padStart(2, '0');
+const Projects = () => (
+  <section className='pg' id='projects1'>
+    <div className='pg-inner'>
+      <h2>Projects</h2>
+      <p className='pg-intro'>A selection of things I have built. Each one links to the live site.</p>
 
-const Projects = () => {
-  const rootRef = useReveal();
-
-  return (
-    <section className='projects-section' id='projects1' ref={rootRef}>
-      <div className='projects-container'>
-        <div className='eyebrow reveal'>(02) Selected work</div>
-
-        <header className='projects-head reveal'>
-          <h2 className='projects-title'>
-            Things I've built, <em>and shipped.</em>
-          </h2>
-          <p className='projects-subtitle'>
-            Every one of these is live. Click through and have a poke around.
-          </p>
-        </header>
-
-        <ul className='projects-grid'>
-          {projects.map((p, i) => (
-            <li key={p.title} className='project-card reveal'>
-              <div className='project-top'>
-                <span className='project-num'>{pad(i + 1)}</span>
-                <span className='project-category'>{p.category}</span>
-              </div>
-
-              <div className='project-head'>
-                <h3 className='project-title'>
-                  <a
-                    href={p.liveUrl}
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    aria-label={`${p.title} (opens in a new tab)`}
-                  >
-                    {p.title}
-                  </a>
-                </h3>
-                <span className='project-arrow' aria-hidden='true'>&#8599;</span>
-              </div>
-
-              <p className='project-description'>{p.description}</p>
-
-              <ul className='project-tech' aria-label='Built with'>
-                {p.tech.map((t) => (
-                  <li key={t}>{t}</li>
-                ))}
-              </ul>
-
-            </li>
-          ))}
-        </ul>
+      <div className='pg-cards pg-cards-2'>
+        {projects.map((p) => (
+          <a key={p.title} className='pg-card pg-link' href={p.url} target='_blank' rel='noopener noreferrer'>
+            <span className='pg-meta'>{p.category}</span>
+            <h3>{p.title}</h3>
+            <p>{p.text}</p>
+            <span className='pg-tech'>{p.tech.join(' · ')}</span>
+            <span className='pg-visit'>Visit site &#8599;</span>
+          </a>
+        ))}
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
 
 export default Projects;

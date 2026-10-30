@@ -1,0 +1,138 @@
+/* Option A v2: navy and a touch of gold. Plain, readable, responsive. Scoped to .academic */
+.academic {
+  --paper: #F7F8FB;
+  --paper-2: #E9EDF4;
+  --ink: #16294D;
+  --ink-2: #4A566A;
+  --line: rgba(22, 41, 77, 0.16);
+  --accent: #C9A24B;
+  --gold-text: #8A6A1F;
+  --font-display: 'Source Serif 4', Georgia, serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'Inter', system-ui, sans-serif;
+  background: var(--paper);
+  color: #1E2A3D;
+  font-family: var(--font-body);
+}
+.academic img { max-width: 100%; }
+.academic ::selection { background: var(--accent); color: var(--ink); }
+
+/* Headings: serif, sentence case, no tracked-out capitals */
+.academic h1, .academic h2, .academic h3,
+.academic .about-title, .academic .projects-title,
+.academic .services-title, .academic .contact-title {
+  font-family: var(--font-display);
+  color: var(--ink);
+  letter-spacing: 0;
+  font-weight: 600;
+}
+.academic .section-label, .academic .contact-eyebrow, .academic .eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  letter-spacing: 0;
+  text-transform: none;
+  font-weight: 600;
+  color: var(--gold-text);
+}
+
+/* Navbar (desktop only, so the phone menu keeps its own styles) */
+.academic .navbar { background: #fff; box-shadow: none; }
+.academic .navbar.scrolled { border-bottom-color: #DDE2EB; }
+.academic .logo-text { font-family: var(--font-display); font-weight: 700; font-size: 1.6rem; }
+@media (min-width: 901px) {
+  .academic .nav-links li a {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    letter-spacing: 0;
+    text-transform: none;
+    font-weight: 500;
+  }
+  .academic .nav-links li a.nav-cta { border-radius: 6px; }
+}
+
+/* Hero */
+.academic .ah { padding: 128px 24px 56px; }
+.academic .ah-inner {
+  max-width: 1160px; margin: 0 auto;
+  display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: 64px; align-items: center;
+}
+.academic .ah-photo img {
+  display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center top;
+  border-radius: 6px; border: 1px solid #D5DCE8;
+}
+.academic .ah-copy h1 { font-size: clamp(2.1rem, 4.6vw, 3.2rem); line-height: 1.12; }
+.academic .ah-sub { font-size: 1.2rem; color: var(--ink); margin: 10px 0 18px; font-weight: 500; }
+.academic .ah-copy p { font-size: 1.05rem; line-height: 1.75; color: var(--ink-2); max-width: 560px; }
+.academic .ah-copy p.ah-sub { color: var(--ink); }
+.academic .ah-cta { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 28px; }
+.academic .ah-btn {
+  padding: 13px 26px; border-radius: 6px; font-weight: 600; font-size: 0.95rem;
+  text-decoration: none; border: 2px solid var(--ink); transition: background 0.2s ease, color 0.2s ease;
+}
+.academic .ah-btn-solid { background: var(--ink); color: #fff; }
+.academic .ah-btn-solid:hover { background: #0F1D38; }
+.academic .ah-btn-line { background: transparent; color: var(--ink); }
+.academic .ah-btn-line:hover { background: var(--ink); color: #fff; }
+
+/* Where to start */
+.academic .sh { padding: 32px 24px 72px; }
+.academic .sh-inner { max-width: 1160px; margin: 0 auto; }
+.academic .sh-inner > h2 { font-size: 1.9rem; margin-bottom: 24px; }
+.academic .sh-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+.academic .sh-card {
+  display: block; background: #fff; border: 1px solid #DDE2EB; border-radius: 6px;
+  padding: 22px; text-decoration: none; transition: border-color 0.2s ease;
+}
+.academic .sh-card:hover { border-color: var(--ink); }
+.academic .sh-card h3 { font-size: 1.15rem; margin-bottom: 6px; }
+.academic .sh-card p { color: var(--ink-2); font-size: 0.92rem; line-height: 1.55; }
+
+/* About: straight photo, no tilt, no sticker */
+.academic .about-frame { transform: none; padding: 0; border: 1px solid #D5DCE8; border-radius: 6px; overflow: hidden; background: none; }
+.academic .about-frame img { aspect-ratio: 4 / 5; object-fit: cover; object-position: center top; }
+.academic .about-sticker { display: none; }
+.academic .marquee { background: var(--ink); color: #fff; }
+
+/* Cards in existing sections: plain, thin border, no accent bar */
+.academic .project-card, .academic .service-card {
+  background: #fff; border: 1px solid #DDE2EB; border-radius: 6px; box-shadow: none;
+}
+.academic .project-card:hover, .academic .service-card:hover { border-color: var(--ink); box-shadow: none; }
+.academic .tech-tag { background: var(--paper-2); color: var(--ink); border-radius: 4px; }
+.academic .project-category { color: var(--gold-text); font-weight: 600; text-transform: none; letter-spacing: 0; }
+.academic .projects-subtitle, .academic .services-subtitle { color: var(--ink-2); }
+.academic .btn-primary, .academic .project-cta, .academic .resume-btn {
+  background: var(--ink); color: #fff; border: 2px solid var(--ink); border-radius: 6px;
+}
+
+/* Contact and footer */
+.academic .contact-section { background: var(--ink); color: #fff; }
+.academic .contact-section .contact-title, .academic .contact-section .contact-title em { color: #fff; font-style: normal; }
+.academic .contact-section .contact-eyebrow { color: #E3C57A; }
+.academic .contact-section .submit-btn { background: var(--accent); color: var(--ink); border-color: var(--accent); border-radius: 6px; }
+.academic .footer { background: #101E3A; color: #C5CFE2; }
+.academic .footer a, .academic .footer-tagline, .academic .footer-copyright { color: #C5CFE2; }
+.academic .footer-logo { font-family: var(--font-display); color: #fff; }
+.academic .footer a:hover { color: var(--accent); }
+
+/* Tablet */
+@media (max-width: 960px) {
+  .academic .ah-inner { gap: 40px; }
+}
+
+/* Phone and small tablet: stack the hero, photo on top */
+@media (max-width: 800px) {
+  .academic .ah { padding: 104px 20px 40px; }
+  .academic .ah-inner { grid-template-columns: 1fr; gap: 28px; }
+  .academic .ah-photo img { aspect-ratio: 4 / 3; max-height: 420px; }
+  .academic .ah-cta { flex-direction: column; }
+  .academic .ah-btn { text-align: center; }
+  .academic .sh { padding: 16px 20px 48px; }
+  .academic .about-figure { max-width: 420px; }
+}
+
+@media (max-width: 480px) {
+  .academic .ah-copy p { font-size: 1rem; }
+  .academic .sh-grid { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --paper: #f2efe8;
+  --paper-2: #e8e4d9;
+  --ink: #14120f;
+  --ink-2: #55504a;
+  --line: rgba(20, 18, 15, 0.16);
+  --accent: #ff4d1c;
+  --accent-deep: #c23a12; /* accent for small text: passes contrast on paper */
+  --font-display: 'Instrument Serif', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --space-section: clamp(5rem, 10vw, 8.5rem);
+}
+
+html { scroll-behavior: smooth; scroll-padding-top: 4.5rem; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: var(--accent); color: var(--ink); }
+
+:focus-visible { outline: 2px solid var(--accent-deep); outline-offset: 3px; }
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+.eyebrow::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+
+/* Shared scroll-reveal (toggled by useReveal.js) */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.reveal.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+}

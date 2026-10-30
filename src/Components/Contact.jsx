@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import './theme.css';
-import './Contact.css';
 
 const Contact = () => {
   const [result, setResult] = useState("");
@@ -35,73 +33,46 @@ const Contact = () => {
   };
 
   return (
-    <section className='contact-section' id='contact1'>
-      <div className='contact-container'>
-        <div className='eyebrow contact-eyebrow'>(04) Contact</div>
+    <section className='pg' id='contact1'>
+      <div className='pg-inner'>
+        <h2>Contact</h2>
+        <p className='pg-intro'>
+          Have a project in mind? Tell me about it and I will get back to you
+          with how I would approach it.
+        </p>
 
-        <div className='contact-grid'>
-          <div className='contact-info'>
-            <h2 className='contact-title'>
-              Let's work <em>together.</em>
-            </h2>
-            <p className='contact-description'>
-              Have a project in mind? Tell me about it and I'll get back to you
-              with how I'd approach it.
-            </p>
-
-            <dl className='contact-details'>
-              <div>
-                <dt>Email</dt>
-                <dd><a href='mailto:paulkiragumburu@gmail.com'>paulkiragumburu@gmail.com</a></dd>
-              </div>
-              <div>
-                <dt>Phone</dt>
-                <dd><a href='tel:+254798465147'>+254 798 465 147</a></dd>
-              </div>
-              <div>
-                <dt>Location</dt>
-                <dd>Nairobi, Kenya</dd>
-              </div>
-              <div>
-                <dt>Elsewhere</dt>
-                <dd className='social-links'>
-                  <a href='https://linkedin.com/in/paul-mburu-088264373' target='_blank' rel='noopener noreferrer'>LinkedIn &#8599;</a>
-                  <a href='https://github.com/paulkiragu' target='_blank' rel='noopener noreferrer'>GitHub &#8599;</a>
-                </dd>
-              </div>
-            </dl>
-          </div>
-
-          <form onSubmit={onSubmit} className='contact-form'>
-            <div className='form-group'>
-              <label htmlFor='name'>01 &mdash; Your name</label>
-              <input type='text' id='name' name='name' placeholder='Enter name' required />
+        <div className='pg-contact'>
+          <dl className='pg-details'>
+            <div><dt>Email</dt><dd><a href='mailto:paulkiragumburu@gmail.com'>paulkiragumburu@gmail.com</a></dd></div>
+            <div><dt>Phone</dt><dd><a href='tel:+254798465147'>+254 798 465 147</a></dd></div>
+            <div><dt>Location</dt><dd>Nairobi, Kenya</dd></div>
+            <div>
+              <dt>Elsewhere</dt>
+              <dd>
+                <a href='https://linkedin.com/in/paul-mburu-088264373' target='_blank' rel='noopener noreferrer'>LinkedIn &#8599;</a>
+                {' '}
+                <a href='https://github.com/paulkiragu' target='_blank' rel='noopener noreferrer'>GitHub &#8599;</a>
+              </dd>
             </div>
+          </dl>
 
-            <div className='form-group'>
-              <label htmlFor='email'>02 &mdash; Your email</label>
-              <input type='email' id='email' name='email' placeholder='Enter email' required />
-            </div>
+          <form onSubmit={onSubmit} className='pg-form'>
+            <label htmlFor='name'>Your name</label>
+            <input type='text' id='name' name='name' placeholder='Jane Doe' required />
 
-            <div className='form-group'>
-              <label htmlFor='subject'>03 &mdash; Subject</label>
-              <input type='text' id='subject' name='subject' placeholder='Project inquiry' />
-            </div>
+            <label htmlFor='email'>Your email</label>
+            <input type='email' id='email' name='email' placeholder='jane@company.com' required />
 
-            <div className='form-group'>
-              <label htmlFor='message'>04 &mdash; Message</label>
-              <textarea id='message' name='message' rows='4' placeholder='Tell me about your project...' required></textarea>
-            </div>
+            <label htmlFor='subject'>Subject</label>
+            <input type='text' id='subject' name='subject' placeholder='Project inquiry' />
 
-            <button type='submit' className='submit-btn' disabled={isSubmitting}>
-              <span>{isSubmitting ? 'Sending...' : 'Send message'}</span>
-              <span aria-hidden='true'>&rarr;</span>
-            </button>
+            <label htmlFor='message'>Message</label>
+            <textarea id='message' name='message' rows='5' placeholder='Tell me about your project...' required></textarea>
+
+            <button type='submit' disabled={isSubmitting}>{isSubmitting ? 'Sending...' : 'Send message'}</button>
 
             {result && (
-              <div className={`form-result ${result.includes('success') ? 'success' : ''}`} role='status'>
-                {result}
-              </div>
+              <p className={`pg-result ${result.includes('success') ? 'ok' : ''}`} role='status'>{result}</p>
             )}
           </form>
         </div>
