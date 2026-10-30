@@ -6,7 +6,7 @@ const Footer = () => (
       <div className='pgf-cols'>
         <div>
           <div className='pgf-logo'>Paul Mburu</div>
-          <p>Full stack developer based in Kenya.</p>
+          <p>Full stack developer</p>
           <a href='/Paul Mburu resume.pdf' download className='pgf-cv'>Download CV</a>
         </div>
         <div>

@@ -58,10 +58,10 @@ const Contact = () => {
 
           <form onSubmit={onSubmit} className='pg-form'>
             <label htmlFor='name'>Your name</label>
-            <input type='text' id='name' name='name' placeholder='Jane Doe' required />
+            <input type='text' id='name' name='name' placeholder='Paul' required />
 
             <label htmlFor='email'>Your email</label>
-            <input type='email' id='email' name='email' placeholder='jane@company.com' required />
+            <input type='email' id='email' name='email' placeholder='Your email' required />
 
             <label htmlFor='subject'>Subject</label>
             <input type='text' id='subject' name='subject' placeholder='Project inquiry' />

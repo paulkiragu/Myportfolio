@@ -2,7 +2,7 @@ import React from 'react';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
 
 const items = [
-  { title: 'Projects', text: 'Six things I have built, with links to the live sites.', href: '#projects1' },
+  { title: 'Projects', text: 'Things I have built, with links to the live sites.', href: '#projects1' },
   { title: 'Services', text: 'What I can build for you and how I work.', href: '#services1' },
   { title: 'Skills and education', text: 'The tools I use, where I studied and my certificates.', href: '#about1' },
   { title: 'Contact', text: 'Have a project in mind? Send me a message.', href: '#contact1' },

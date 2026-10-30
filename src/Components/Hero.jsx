@@ -10,7 +10,7 @@ const Hero = () => (
       </div>
       <div className='ah-copy'>
         <h1>Hi, I&rsquo;m Paul Mburu.</h1>
-        <p className='ah-sub'>Full stack developer based in Kenya.</p>
+        <p className='ah-sub'>Full stack developer</p>
         <p>
           I work mostly with React, Node.js and Python. I have built an online
           store with M-Pesa payments, a crop recommendation tool for farmers and
